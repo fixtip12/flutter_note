@@ -48,18 +48,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
+  var inputText = '';
 
   @override
   Widget build(BuildContext context) {
@@ -80,10 +69,14 @@ class _MyHomePageState extends State<MyHomePage> {
           child: Column(
             children: [
               const Spacer(),
-              const TextField(),
+              TextField(onChanged: (text) {
+                setState(() {
+                  inputText = text;
+                });
+              }),
               const SizedBox(height: 32),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: inputText.isEmpty ? null : () {},
                 child: const Text('保存'),
               ),
               const Spacer()
